@@ -4,20 +4,38 @@ on:
   push:
 
 jobs:
-  test:
+  with-conda:
     runs-on: windows-latest
 
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Set up miniconda
+      - name: Set up conda
         uses: conda-incubator/setup-miniconda@v4
       
       - name: Install python and tk
         shell: bash -l {0}
         run: conda create -y -n test_env -c anaconda python=3.14 tk=9.0.4
 
-      - name: List installed package versions (conda)
-        shell: bash -l {0}  # necessary for conda env to be active
+      - name: List installed package versions
+        shell: bash -l {0}
         run: conda list
+
+  with-mamba:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up mamba
+        uses: mamba-org/setup-micromamba@v3
+      
+      - name: Install python and tk
+        shell: bash -l {0}
+        run: mamba create -y -n test_env -c anaconda python=3.14 tk=9.0.4
+
+      - name: List installed package versions
+        shell: bash -l {0}
+        run: mamba list
