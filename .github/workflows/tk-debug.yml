@@ -16,7 +16,7 @@ jobs:
       
       - name: Install python and tk
         shell: bash -l {0}
-        run: "C:\Users\runneradmin\micromamba-bin\micromamba.exe" create -y -r "C:\Users\runneradmin\micromamba" python=3.14 tk=9.0.4 --log-level debug --rc-file "D:\a\_temp\setup-micromamba\.condarc"
+        run: C:\\Users\\runneradmin\\micromamba-bin\\micromamba.exe create -y -r C:\\Users\\runneradmin\\micromamba python=3.14 tk=9.0.4 --log-level debug --rc-file D:\\a\\_temp\\setup-micromamba\\.condarc
 
       - name: List installed package versions (conda)
         shell: bash -l {0}  # necessary for conda env to be active
