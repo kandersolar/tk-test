@@ -1,0 +1,36 @@
+name: tk-debug
+
+on:
+  push:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [windows-latest]
+        python-version: ["3.14"]
+        environment-type: [conda]
+        suffix: ['']  # placeholder as an alternative to "-min"
+
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Install Conda environment with Micromamba
+        uses: mamba-org/setup-micromamba@v3
+        with:
+          micromamba-version: '2.9.0-0'
+          environment-file: ci/requirements-py3.14.yml
+          cache-downloads: false
+          cache-environment: false
+          log-level: debug
+          create-args: >-
+            python=${{ matrix.python-version }}
+          condarc: |
+            channel-priority: flexible
+
+      - name: List installed package versions (conda)
+        shell: bash -l {0}  # necessary for conda env to be active
+        run: micromamba list
