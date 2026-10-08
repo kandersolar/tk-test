@@ -11,13 +11,13 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Install Conda environment with Micromamba
-        uses: mamba-org/setup-micromamba@v3
+      - name: Set up miniconda
+        uses: conda-incubator/setup-miniconda@v4
       
       - name: Install python and tk
         shell: bash -l {0}
-        run: C:\\Users\\runneradmin\\micromamba-bin\\micromamba.exe create -y -r C:\\Users\\runneradmin\\micromamba -n test_env -c conda-forge python=3.14 tk=9.0.4
+        run: C:\\Users\\runneradmin\\miniconda-bin\\conda.exe create -y -r C:\\Users\\runneradmin\\miniconda -n test_env -c anaconda python=3.14 tk=9.0.4
 
       - name: List installed package versions (conda)
         shell: bash -l {0}  # necessary for conda env to be active
-        run: micromamba list
+        run: conda list
