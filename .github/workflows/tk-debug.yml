@@ -34,8 +34,8 @@ jobs:
       
       - name: Install python and tk
         shell: bash -l {0}
-        run: mamba create -y -n test_env -c anaconda python=3.14 tk=9.0.4
+        run: micromamba create -y -n test_env -c anaconda python=3.14 tk=9.0.4
 
       - name: List installed package versions
         shell: bash -l {0}
-        run: mamba list
+        run: micromamba list
